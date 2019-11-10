@@ -1,0 +1,19 @@
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <h2>Please input a word </h2>
+    Word : <input class="" name="word" type="text">
+    <input type="submit" value="Submit">
+</form>
+
+<h2>All Possible Anagrams </h2>
+<table>
+<tr>
+	<td>Anagrams : </td>
+	<td>{{ word }}</td>
+</tr>
+<tr>
+	<td>Anagrams without repeated items : </td>
+	<td>{{ word_no_repeat }}</td>
+</tr>
+</table>
