@@ -25,8 +25,7 @@ SECRET_KEY = '8_#ho_im5mwod=vux+h0n!!^=ryq2m28y8*m7fhpd9llp+w)n1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1']
-
+ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -40,7 +39,15 @@ INSTALLED_APPS = [
     'word',
     'werkzeug_debugger_runserver',
     'django_extensions',
+    'elasticapm.contrib.django',
 ]
+
+ELASTIC_APM = {
+   'SERVICE_NAME': 'word',
+   'DEBUG': True,
+   'SERVER_URL': 'http://127.0.0.1:8200',
+   'DJANGO_TRANSACTION_NAME_FROM_ROUTE' : True,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -50,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'elasticapm.contrib.django.middleware.TracingMiddleware',
+    'elasticapm.contrib.django.middleware.Catch404Middleware',
 ]
 
 ROOT_URLCONF = 'cloud.urls'
@@ -65,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'elasticapm.contrib.django.context_processors.rum_tracing',
             ],
         },
     },
