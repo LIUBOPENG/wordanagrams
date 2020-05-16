@@ -1,0 +1,9 @@
+django-extensions
+django-werkzeug-debugger-runserver
+pyOpenSSL
+redis_cache
+django-redis
+django-redis-cache
+python-redis-lock
+python-redis-lock[django]
+redis
