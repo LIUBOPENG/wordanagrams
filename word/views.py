@@ -45,7 +45,7 @@ def getword(request):
        return render(request,'word.html',{'word': perms, 'word_no_repeat': perms_no_repeat})
    else:
        print("Other instance has the lock.")
-       return render(request,'word.html',{})
+       return render(request,'word.html',{'word': perms, 'word_no_repeat': perms_no_repeat})
 
 
 

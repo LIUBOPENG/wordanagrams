@@ -55,4 +55,4 @@ USER ${APP_USER}:${APP_USER}
 
 # Start uWSGI
 CMD ["./install.sh"]
-CMD ["./runserver.sh"]
+CMD ["./runserver_ssl.sh"]
