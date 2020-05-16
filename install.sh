@@ -1,3 +1,9 @@
 pip3 install django-extensions
 pip3 install django-werkzeug-debugger-runserver
 pip3 install pyOpenSSL
+pip3 install redis_cache
+pip3 install django-redis
+pip3 install django-redis-cache
+pip3 install python-redis-lock
+pip3 install python-redis-lock[django]
+pip3 install redis

@@ -39,15 +39,15 @@ INSTALLED_APPS = [
     'word',
     'werkzeug_debugger_runserver',
     'django_extensions',
-    'elasticapm.contrib.django',
+    #'elasticapm.contrib.django',
 ]
 
-ELASTIC_APM = {
-   'SERVICE_NAME': 'word',
-   'DEBUG': True,
-   'SERVER_URL': 'http://127.0.0.1:8200',
-   'DJANGO_TRANSACTION_NAME_FROM_ROUTE' : True,
-}
+#ELASTIC_APM = {
+#   'SERVICE_NAME': 'word',
+#   'DEBUG': True,
+#   'SERVER_URL': 'http://127.0.0.1:8200',
+#   'DJANGO_TRANSACTION_NAME_FROM_ROUTE' : True,
+#}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,8 +57,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'elasticapm.contrib.django.middleware.TracingMiddleware',
-    'elasticapm.contrib.django.middleware.Catch404Middleware',
+    #'elasticapm.contrib.django.middleware.TracingMiddleware',
+    #'elasticapm.contrib.django.middleware.Catch404Middleware',
 ]
 
 ROOT_URLCONF = 'cloud.urls'
@@ -74,7 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'elasticapm.contrib.django.context_processors.rum_tracing',
+                #'elasticapm.contrib.django.context_processors.rum_tracing',
             ],
         },
     },
@@ -93,6 +93,17 @@ DATABASES = {
     }
 }
 
+CACHES = {
+    'default': {
+        #'BACKEND': 'redis_cache.cache.RedisCache',
+        #'LOCATION': '127.0.0.1:6331',
+        'BACKEND': 'redis_lock.django_cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6331/1',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient'
+        }
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
