@@ -19,6 +19,13 @@ spec:
         image: word
         ports:
         - containerPort: 8000
+        volumeMounts:
+          - name: secret-volume
+            mountPath: /etc/secret-volume
+       volumes:
+         - name: secret-volume
+           secret:
+             secretName: test-secret
 ---
 apiVersion: v1
 kind: Service
