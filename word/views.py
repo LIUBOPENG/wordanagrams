@@ -29,7 +29,7 @@ def getword(request):
    perms_no_repeat = [''.join(q) for q in set(permutations(word))]
 
    # Add redis lock
-   conn = StrictRedis(host='127.0.0.1',port=6331)
+   conn = StrictRedis(host='redisserver',port=6379)
    lock = redis_lock.Lock(conn, "hcountlock")
    if lock.acquire(blocking=False):
        print("Got the lock.")
